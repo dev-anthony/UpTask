@@ -2,4 +2,4 @@
 
 ## API UpTask
 
-<p>API Sencilla con JWT para el login de los usuarios</p>
+<p>API con JWT para el login de los usuarios y rutas protegidas</p>
