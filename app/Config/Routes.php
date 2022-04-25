@@ -34,7 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('/auth/login', 'Auth::login');
 
-$routes->group('api/rols', ['namespace' => 'App\Controllers\API'], function ($routes) {
+$routes->group('api/rols', ['namespace' => 'App\Controllers\API', 'filter' => 'authFilter'], function ($routes) {
   // http://localhost:8080/api/rols --> GET
   $routes->get('', 'RolsController::index');
   // http://localhost:8080/api/rols/1 --> SHOW
@@ -47,7 +47,7 @@ $routes->group('api/rols', ['namespace' => 'App\Controllers\API'], function ($ro
   $routes->delete('delete/(:num)', 'RolsController::delete/$1');
 });
 
-$routes->group('api/users', ['namespace' => 'App\Controllers\API'], function ($routes) {
+$routes->group('api/users', ['namespace' => 'App\Controllers\API', 'filter' => 'authFilter'], function ($routes) {
   // http://localhost:8080/api/users --> GET
   $routes->get('', 'UsersController::index');
   // http://localhost:8080/api/users/1 --> SHOW

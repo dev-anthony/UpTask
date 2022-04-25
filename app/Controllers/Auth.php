@@ -6,7 +6,6 @@ use App\Models\UserModel;
 use CodeIgniter\API\ResponseTrait;
 use Config\Services;
 use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 
 class Auth extends BaseController
 {
@@ -51,6 +50,11 @@ class Auth extends BaseController
       'aud' => base_url(),
       'iat' => $time,
       'exp' => time() + (60 * 60 * 24 * 7),
+      'data' => [
+        'name' => $user['name'],
+        'username' => $user['username'],
+        'role' => $user['rol_id'],
+      ],
     ];
 
     $jwt = JWT::encode($payload, $key, 'HS256');
