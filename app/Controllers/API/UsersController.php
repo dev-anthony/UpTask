@@ -56,7 +56,7 @@ class UsersController extends ResourceController
   public function create()
   {
     try {
-      //  guarda los datos validados y haseha el password
+      //  estaa paarte lo que hace es guardar los datos validados y haseha el password
       $data = $this->request->getJSON(true);
       $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
