@@ -49,8 +49,9 @@ class Auth extends BaseController
     $payload = [
       'aud' => base_url(),
       'iat' => $time,
-      'exp' => time() + (60 * 60 * 24 * 7),
+      'exp' => time() + (60 * 60 * 24),
       'data' => [
+        'id' => $user['id'],
         'name' => $user['name'],
         'username' => $user['username'],
         'role' => $user['rol_id'],

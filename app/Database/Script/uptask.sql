@@ -24,9 +24,9 @@ create table if not exists user (
 
 create table if not exists task (
     id_task int not null auto_increment,
+    title varchar(60) not null,
     description varchar(255) not null,
-    status varchar(50) not null,
-    end_date date not null,
+    status varchar(20),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     update_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     primary key (id_task),
@@ -42,3 +42,5 @@ create table if not exists category (
     update_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     primary key (id_category)
 );
+
+-- seccion para las vistas
