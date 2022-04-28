@@ -19,16 +19,19 @@ class Auth extends BaseController
   public function login()
   {
     try {
-      $username = $this->request->getPost('username');
-      $password = $this->request->getPost('password');
+      $data = $this->request->getJSON();
+
+      if (!$data || !$data) {
+        throw new \Exception('Bad Request');
+      }
 
       $userModel = new UserModel();
-      $validateUser = $userModel->where('username', $username)->first();
+      $validateUser = $userModel->where('username', $data->username)->first();
 
       if ($validateUser == null)
         return $this->failNotFound('Usuario no encontrado');
 
-      if (verifyHash($password, $validateUser['password'])) :
+      if (verifyHash($data->password, $validateUser['password'])) :
 
         // return $this->respond('Usuario encontrado', 200);
         $jwt = $this->generateJWT($validateUser);
