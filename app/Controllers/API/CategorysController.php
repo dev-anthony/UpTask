@@ -28,6 +28,30 @@ class CategorysController extends ResourceController
     }
   }
 
+  public function show($id = null)
+  {
+    try {
+      //code...
+      if ($id = $this->model->find($id)) {
+        return $this->respond(
+          [
+            'msg' => 'La categoria se encontro correctamente',
+            'categoria' => $id
+          ],
+          200
+        );
+      } else {
+        return $this->respond(
+          ['error' => 'No se puede encontrar la categoria'],
+          500
+        );
+      }
+    } catch (\Exception $e) {
+      //Exception $e;
+      return $this->failServerError('Error en el servidor', $e->getMessage());
+    }
+  }
+
   public function create()
   {
     try {
@@ -134,13 +158,11 @@ class CategorysController extends ResourceController
         $data = $this->model->find($id);
         if ($data) {
           if ($this->model->delete($id)) {
-            return $this->respond(
-              [
-                'msg' => 'La categoria se elimino correctamente',
-                'categoria' => $data
-              ],
-              200
-            );
+            return $this->respondDeleted([
+              'status' => 'deleted',
+              'message' => 'Categoria eliminada',
+              'data' => $data,
+            ]);
           } else {
             return $this->respond(
               ['error' => 'No se puede eliminar la categoria'],

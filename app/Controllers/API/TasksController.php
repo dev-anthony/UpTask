@@ -15,13 +15,14 @@ class TasksController extends ResourceController
   public function index()
   {
     try {
-
-      if ($data = $this->model->findAll()) {
-        return $this->respond($data, 200);
+      //code...
+      if ($tasks = $this->model->findAll()) {
+        return $this->respond($tasks, 200);
       } else {
         return $this->failNotFound('No se encontraron tareas');
       }
     } catch (\Exception $e) {
+      //Exception $e;
       return $this->failServerError('Error en el servidor', $e->getMessage());
     }
   }

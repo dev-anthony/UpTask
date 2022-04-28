@@ -69,7 +69,7 @@ $routes->group('api/categories', ['namespace' => 'App\Controllers\API', 'filter'
   $routes->post('create', 'CategorysController::create');
   // http://localhost:8080/api/categories/edit/1 --> PUT
   $routes->put('edit/(:num)', 'CategorysController::edit/$1');
-  // http://localhost:8080/api/categories/1 --> DELETE
+  // http://localhost:8080/api/categories/delete/1 --> DELETE
   $routes->delete('delete/(:num)', 'CategorysController::delete/$1');
 });
 
