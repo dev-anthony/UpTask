@@ -9,7 +9,7 @@ class TaskModel extends Model
   protected $table = 'task';
   protected $primaryKey = 'id_task';
   protected $returnType = 'array';
-  protected $allowedFields = ['description', 'status', 'end_date', 'user_id'];
+  protected $allowedFields = ['title', 'description', 'status', 'category_id'];
 
   // Control de fechas de auditacion
   protected $useTimestamps = false;

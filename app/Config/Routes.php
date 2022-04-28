@@ -60,6 +60,32 @@ $routes->group('api/users', ['namespace' => 'App\Controllers\API', 'filter' => '
   $routes->delete('delete/(:num)', 'UsersController::delete/$1');
 });
 
+$routes->group('api/categories', ['namespace' => 'App\Controllers\API', 'filter' => 'authFilter'], function ($routes) {
+  // http://localhost:8080/api/categories --> GET
+  $routes->get('', 'CategorysController::index');
+  // http://localhost:8080/api/categories/1 --> SHOW
+  $routes->get('(:num)', 'CategorysController::show/$1');
+  // http://localhost:8080/api/categories/create --> POST
+  $routes->post('create', 'CategorysController::create');
+  // http://localhost:8080/api/categories/edit/1 --> PUT
+  $routes->put('edit/(:num)', 'CategorysController::edit/$1');
+  // http://localhost:8080/api/categories/1 --> DELETE
+  $routes->delete('delete/(:num)', 'CategorysController::delete/$1');
+});
+
+$routes->group('api/tasks', ['namespace' => 'App\Controllers\API', 'filter' => 'authFilter'], function ($routes) {
+  // http://localhost:8080/api/tasks --> GET
+  $routes->get('', 'TasksController::index');
+  // http://localhost:8080/api/tasks/1 --> SHOW
+  $routes->get('(:num)', 'TasksController::show/$1');
+  // http://localhost:8080/api/tasks/create --> POST
+  $routes->post('create', 'TasksController::create');
+  // http://localhost:8080/api/tasks/edit/1 --> PUT
+  $routes->put('edit/(:num)', 'TasksController::edit/$1');
+  // http://localhost:8080/api/tasks/1 --> DELETE
+  $routes->delete('delete/(:num)', 'TasksController::delete/$1');
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

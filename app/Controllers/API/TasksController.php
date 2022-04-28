@@ -15,16 +15,14 @@ class TasksController extends ResourceController
   public function index()
   {
     try {
-      if ($task = $this->model->findAll()) {
-        return $$this->respond($task, 200);
+
+      if ($data = $this->model->findAll()) {
+        return $this->respond($data, 200);
       } else {
-        return $this->failNotFound('No se encontraron tareas registradas');
+        return $this->failNotFound('No se encontraron tareas');
       }
     } catch (\Exception $e) {
-      return $this->failServerError(
-        'Error en el servidor',
-        $e->getMessage()
-      );
+      return $this->failServerError('Error en el servidor', $e->getMessage());
     }
   }
 
@@ -53,25 +51,25 @@ class TasksController extends ResourceController
   public function create()
   {
     try {
+      //  estaa paarte lo que hace es guardar los datos validados y haseha el password
       $data = $this->request->getJSON(true);
 
-      if ($this->validate->run($data, 'task_validation') == false) {
-        return $this->fail([
-          'msg' => 'Error al crear la tarea',
-          'Task' => $this->validation->getErrors()
-        ]);
+      if ($this->validation->run($data, 'task_validation') == false) {
+        return $this->fail($this->validation->getErrors());
       } else {
+
         $this->model->insert($data);
         return $this->respondCreated([
           'status' => 'created',
-          'message' => 'Tarea creada',
-          'data' => $data
-        ]);
+          'message' => 'Categoria creada',
+          'data' => $data,
+        ], 201);
       }
     } catch (\Exception $e) {
-      return $this->failServerError('Ocurrio un error en el servidor', $e->getMessage());
+      return $this->failServerError('Error en el servidor', $e->getMessage());
     }
   }
+
 
   public function edit($id = null)
   {

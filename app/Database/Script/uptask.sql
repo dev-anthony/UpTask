@@ -24,6 +24,15 @@ create table if not exists user (
     foreign key (rol_id) references rol(id_rol)
 );
 
+create table if not exists category (
+    id_category int not null auto_increment,
+    title varchar(60) not null,
+    description varchar(255) not null,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    update_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    primary key (id_category)
+);
+
 create table if not exists task (
     id_task int not null auto_increment,
     title varchar(60) not null,
@@ -33,16 +42,9 @@ create table if not exists task (
     update_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     primary key (id_task),
     user_id int not null,
-    foreign key (user_id) references user(id_user) on delete cascade on update cascade
-);
-
-create table if not exists category (
-    id_category int not null auto_increment,
-    name_category varchar(100) not null,
-    description varchar(255) not null,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    update_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    primary key (id_category)
+    category_id int not null,
+    foreign key (user_id) references user(id_user) on delete cascade on update cascade,
+    foreign key (category_id) references category(id_category) on delete cascade on update cascade
 );
 
 -- seccion para las vistas

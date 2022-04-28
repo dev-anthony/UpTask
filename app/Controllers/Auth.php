@@ -54,7 +54,7 @@ class Auth extends BaseController
       'iat' => $time,
       'exp' => time() + (60 * 60 * 24),
       'data' => [
-        'id' => $user['id'],
+        // 'id' => $user['id'],
         'name' => $user['name'],
         'username' => $user['username'],
         'role' => $user['rol_id'],

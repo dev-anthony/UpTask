@@ -83,4 +83,53 @@ class Validation
       ],
     ],
   ];
+
+  public $category_validation = [
+    'title' => [
+      'label' => 'Titulo',
+      'rules' => 'required|min_length[3]|max_length[60]|trim',
+      'errors' => [
+        'required' => 'El campo {field} es requerido',
+        'min_length' => 'El campo {field} debe tener al menos {param} caracteres',
+        'max_length' => 'El campo {field} debe tener como maximo {param} caracteres',
+      ],
+    ],
+    'description' => [
+      'label' => 'Descripción',
+      'rules' => 'required|min_length[5]|max_length[255]|trim',
+      'errors' => [
+        'required' => 'El campo {field} es requerido',
+        'min_length' => 'El campo {field} debe tener al menos {param} caracteres',
+        'max_length' => 'El campo {field} debe tener como maximo {param} caracteres',
+      ],
+    ],
+  ];
+
+  public $task_validation = [
+    'title' => [
+      'label' => 'Título',
+      'rules' => 'required|min_length[3]|max_length[60]|trim',
+      'errors' => [
+        'required' => 'El campo {field} es requerido',
+        'min_length' => 'El campo {field} debe tener al menos {param} caracteres',
+        'max_length' => 'El campo {field} debe tener como maximo {param} caracteres',
+      ],
+    ],
+    'description' => [
+      'label' => 'Descripción',
+      'rules' => 'required|min_length[5]|max_length[255]|trim',
+      'errors' => [
+        'required' => 'El campo {field} es requerido',
+        'min_length' => 'El campo {field} debe tener al menos {param} caracteres',
+        'max_length' => 'El campo {field} debe tener como maximo {param} caracteres',
+      ],
+    ],
+    'category_id' => [
+      'label' => 'Categoria',
+      'rules' => 'required',
+      'errors' => [
+        'required' => 'El campo {field} es requerido',
+      ],
+    ],
+  ];
 }
